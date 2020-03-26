@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="first">
+  
+        <h1 v-cloak >{{first }}</h1>
+        <h1 v-cloak >{{full }}</h1>
+        <demo title="333333"></demo>
+    </div>
+    <script src="./vue-2.4.0.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                first: '1111',
+                second:'222',
+                end:'3333'
+            },
+            components:{
+                "demo":{
+                    props:["title"],
+                    template:'<h3>  {{title}} </h3>'
+                }
+            },
+            computed:{
+               full:{
+                   get(){
+                    return this.first + this.end;
+                   },
+                   set(newVal){
+                    let names = newVal.split("");
+                    this.first = names[0];
+                    this.end = names[names.length - 1]
+
+                   }
+               }
+            },
+            watch:{
+                // first(val){
+                //     this.end = val + '444';
+                //     console.log(val)
+                // }
+            },
+            methods: {
+
+                
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>
